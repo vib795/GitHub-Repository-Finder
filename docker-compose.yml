@@ -1,0 +1,10 @@
+version: '3'
+services:
+  github-repo-finder:
+    build:
+      context: .
+    environment:
+      - GITHUB_TOKEN=your_actual_github_token
+    volumes:
+      - ./:/app
+    command: ["cron", "-f"]
