@@ -1,14 +1,14 @@
-# Dockerfile
-FROM python:3.8-slim
+# Use an official Python runtime as a parent image
+FROM python:3.8
 
+# Set the working directory in the container
 WORKDIR /app
 
-COPY requirements.txt .
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY app.py .
-
-# Add a cron job to run the script every day at 8 AM
-RUN echo "0 8 * * * python /app/app.py" | crontab -
-
-CMD ["cron", "-f"]
+# Run script.py when the container launches
+CMD ["python", "app.py"]

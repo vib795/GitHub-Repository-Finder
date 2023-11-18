@@ -32,11 +32,12 @@ def save_to_csv(issues):
         writer = csv.writer(file)
         writer.writerow(['Repository', 'Issue Title', 'Issue URL'])
         for issue in issues:
-            writer.writerow([
-                issue['repository']['full_name'],
-                issue['title'],
-                issue['html_url']
-            ])
+            repository_name = issue.get('repository', {}).get('full_name', 'N/A')
+            title = issue.get('title', 'N/A')
+            url = issue.get('html_url', 'N/A')
+
+            writer.writerow([repository_name, title, url])
+
 
 if __name__ == "__main__":
     issues = search_good_first_issues()
