@@ -7,4 +7,3 @@ services:
       - GITHUB_TOKEN=your_actual_github_token
     volumes:
       - ./:/app
-    command: ["cron", "-f"]
